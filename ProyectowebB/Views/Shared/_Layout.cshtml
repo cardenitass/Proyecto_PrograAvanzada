@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Pagina Principal</title>
+    <link href="~/template/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    @RenderBody()
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="index.html">Ferreteria</a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!">Configuracion</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="#!">Cerrar seccion</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Categoria</div>
+                            
+                            <ul class="">
+                                <li><a class="nav-link" href="#!">Jardin</a></li>
+                                <li><a class="nav-link" href="#!">Construcion</a></li>
+                                <li><a class="nav-link" href="#!">Casa</a></li>
+                            </ul>
+                        
+                        
+                       
+                        
+                    </div>
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Usuarios</div>
+                        <ul class="">
+                            <li><a class="nav-link" href="#!">Administradores</a></li>
+                            <li><a class="nav-link" href="#!">Empleados</a></li>
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+                        
+
+</nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div style="margin-bottom:200px;">
+                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div>
+                            <div class="carousel-item active" data-bs-interval="900">
+                                <img src="https://www.camarabrunca.com/wp-content/uploads/2017/07/herramientas.jpg" class="d-block w-100 h-500" alt="90">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>Bienvenidos</h4>
+
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="200">
+                                <img src="https://www.pymempresario.com/wp-content/uploads/2018/04/1-MEDIANAS-min-1.jpg" class="d-block w-100 h-500" alt="90">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>Aqui encuentra todas la herramientas</h4>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="https://helvex.com.mx/media/wysiwyg/40_.png" class="d-block w-100 h-500" alt="100">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h4>Descuentos</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div style="margin-top: 400px;">
+                    <div class="card-group">
+                        <div class="card bg-primary">
+                            <img src="https://cr.epaenlinea.com/media/catalog/product/0/9/09fa1dee-09ed-49e0-97dc-0e5d228e61fc.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=300&width=300&canvas=300:300" alt="Alternate Text" />
+                            <div class="Martillo desc madera">
+                                <p class="card-text">Martillo de madera grande</p>
+                            </div>
+                        </div>
+                        <div class="card bg-warning">
+                            <img src="https://www.ellagar.com/SERV_ADMIN_FILES/Archivos/Imagenes/Articulos_MED/7070637--18444_MED.png" alt="Alternate Text" />
+                            <div class="Manguera azul">
+                                <p class="card-text">Manguera azul facil de guarda</p>
+                            </div>
+                        </div>
+                        <div class="card bg-success">
+                            <img src="https://jardinorganika.cl/wp-content/uploads/2019/04/organika_M_cafe-300x300.jpg" alt="Alternate Text" />
+                            <div class="Maceta">
+                                <p class="card-text">Maceta de plastico</p>
+                            </div>
+                        </div>
+                        <div class="card bg-danger">
+                            <img src="https://www.decoracionbeltran.com/45587-home_default/estantes-de-madera-coleccion-flamingo-gr.jpg" alt="Alternate Text" />
+                            <div class="card-body text-center">
+                                <p class="card-text">Some text inside the fourth card</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Ferreteria Website 2022</div>
+                        <div>
+                            <a href="#">Politica de Privacidad</a>
+                            &middot;
+                            <a href="#">Terms &amp; Condiciones </a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/template/js/scripts.js"></script>
+</body>
+</html>
