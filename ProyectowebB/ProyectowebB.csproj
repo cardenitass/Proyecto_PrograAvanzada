@@ -138,7 +138,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\Fondologin.jpg" />
+    <Content Include="img\Imagen_SNAP_Mesa_de_trabajo_1.png" />
+    <Content Include="img\Imagen_SNAP_Mesa_de_trabajo_1_copia_2.png" />
     <Content Include="img\keys-workshop-mechanic-tools-162553.jpeg" />
+    <Content Include="img\xd_Mesa_de_trabajo_1_copia.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
