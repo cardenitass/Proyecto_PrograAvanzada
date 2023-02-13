@@ -51,19 +51,22 @@ CREATE TABLE Invoice(
 CREATE TABLE  Invoice_details (
 	id_invoice_detail int IDENTITY (1,1) NOT NULL CONSTRAINT pk_invoice_details PRIMARY KEY,
 	id_product int NOT NULL,
-	cantidad decimal NOT NULL,
-	precio decimal NOT NULL,
+	quantity decimal NOT NULL,
+	price decimal NOT NULL,
 	id_invoice int NOT NULL,
 );
 
 CREATE TABLE  Binnacle (
-	id_error int  NOT NULL CONSTRAINT pk_binnacle PRIMARY KEY,
+	id_error bigint  NOT NULL CONSTRAINT pk_binnacle PRIMARY KEY,
 	description varchar(500) NOT NULL,
-	id_user int NOT NULL,
+	date_time datetime NOT NULL,
+	origin varchar(100) NOT NULL,
+	id_user int NOT NULL
 );
 
 
-ALTER TABLE product ADD CONSTRAINT fk_store FOREIGN KEY (id_store)
+
+ALTER TABLE Product ADD CONSTRAINT fk_store FOREIGN KEY (id_store)
 REFERENCES store (id_store);
 
 ALTER TABLE Invoice  ADD CONSTRAINT fk_user FOREIGN KEY (id_user) 
