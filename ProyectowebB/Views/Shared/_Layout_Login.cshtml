@@ -26,6 +26,7 @@
                                       
                                             @using(Html.BeginForm("IniciarSeccion", "Home",FormMethod.Post, new { @class="pt-3" }))
                                             {
+
                                             <div class="form-floating mb-3">
                                                 @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electrónico" })
                                                 <label for="inputEmail">Correo electrónico </label>
