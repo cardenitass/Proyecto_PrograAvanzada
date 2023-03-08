@@ -19,14 +19,12 @@ namespace ProyectowebB.Controllers
             return View();
         }
         
-    
-    [HttpPost]
-    public ActionResult IniciarSeccion(UsuarioEnt entidad)
-    {
-        UsuarioModel model = new UsuarioModel();
-        model.ValidarUsuario();
-        return View();
+     public ActionResult Principal() {
+            
+            return View();
+        
         }
+
     }
 
 }

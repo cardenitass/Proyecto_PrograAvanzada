@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProyectoFinal_KN_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Binnacle">
+          <Key>
+            <PropertyRef Name="id_error" />
+          </Key>
+          <Property Name="id_error" Type="bigint" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="date_time" Type="datetime" Nullable="false" />
+          <Property Name="origin" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="id_invoice" />
+          </Key>
+          <Property Name="id_invoice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice_details">
+          <Key>
+            <PropertyRef Name="id_invoice_detail" />
+          </Key>
+          <Property Name="id_invoice_detail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_product" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_invoice" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="picture_url" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="id_store" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="id_store" />
+          </Key>
+          <Property Name="id_store" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Profile">
+          <Key>
+            <PropertyRef Name="id_userProfile" />
+          </Key>
+          <Property Name="id_userProfile" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_type" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_tb">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="id_userProfile" Type="int" Nullable="false" />
+          <Property Name="token_recovery" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="fk_invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Invoice_details" Type="Self.Invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="id_invoice" />
+            </Principal>
+            <Dependent Role="Invoice_details">
+              <PropertyRef Name="id_invoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Invoice_details" Type="Self.Invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="Invoice_details">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="id_store" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="id_store" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user">
+          <End Role="User_tb" Type="Self.User_tb" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_tb">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_profile">
+          <End Role="User_Profile" Type="Self.User_Profile" Multiplicity="1" />
+          <End Role="User_tb" Type="Self.User_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Profile">
+              <PropertyRef Name="id_userProfile" />
+            </Principal>
+            <Dependent Role="User_tb">
+              <PropertyRef Name="id_userProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user2">
+          <End Role="User_tb" Type="Self.User_tb" Multiplicity="1" />
+          <End Role="Binnacle" Type="Self.Binnacle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_tb">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Binnacle">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoFinal_KN_BDModelStoreContainer">
+          <EntitySet Name="Binnacle" EntityType="Self.Binnacle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice_details" EntityType="Self.Invoice_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Profile" EntityType="Self.User_Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_tb" EntityType="Self.User_tb" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_invoice" Association="Self.fk_invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Invoice_details" EntitySet="Invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="fk_product" Association="Self.fk_product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Invoice_details" EntitySet="Invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="fk_store" Association="Self.fk_store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user" Association="Self.fk_user">
+            <End Role="User_tb" EntitySet="User_tb" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_profile" Association="Self.fk_user_profile">
+            <End Role="User_Profile" EntitySet="User_Profile" />
+            <End Role="User_tb" EntitySet="User_tb" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user2" Association="Self.fk_user2">
+            <End Role="User_tb" EntitySet="User_tb" />
+            <End Role="Binnacle" EntitySet="Binnacle" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectoFinal_KN_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Binnacle">
+          <Key>
+            <PropertyRef Name="id_error" />
+          </Key>
+          <Property Name="id_error" Type="Int64" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="origin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User_tb" Relationship="Self.fk_user2" FromRole="Binnacle" ToRole="User_tb" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="id_invoice" />
+          </Key>
+          <Property Name="id_invoice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Invoice_details" Relationship="Self.fk_invoice" FromRole="Invoice" ToRole="Invoice_details" />
+          <NavigationProperty Name="User_tb" Relationship="Self.fk_user" FromRole="Invoice" ToRole="User_tb" />
+        </EntityType>
+        <EntityType Name="Invoice_details">
+          <Key>
+            <PropertyRef Name="id_invoice_detail" />
+          </Key>
+          <Property Name="id_invoice_detail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_product" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="id_invoice" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Self.fk_invoice" FromRole="Invoice_details" ToRole="Invoice" />
+          <NavigationProperty Name="Product" Relationship="Self.fk_product" FromRole="Invoice_details" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="id_product" />
+          </Key>
+          <Property Name="id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="picture_url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_store" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Invoice_details" Relationship="Self.fk_product" FromRole="Product" ToRole="Invoice_details" />
+          <NavigationProperty Name="Store" Relationship="Self.fk_store" FromRole="Product" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="id_store" />
+          </Key>
+          <Property Name="id_store" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.fk_store" FromRole="Store" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="User_Profile">
+          <Key>
+            <PropertyRef Name="id_userProfile" />
+          </Key>
+          <Property Name="id_userProfile" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User_tb" Relationship="Self.fk_user_profile" FromRole="User_Profile" ToRole="User_tb" />
+        </EntityType>
+        <EntityType Name="User_tb">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="id_userProfile" Type="Int32" Nullable="false" />
+          <Property Name="token_recovery" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Binnacle" Relationship="Self.fk_user2" FromRole="User_tb" ToRole="Binnacle" />
+          <NavigationProperty Name="Invoice" Relationship="Self.fk_user" FromRole="User_tb" ToRole="Invoice" />
+          <NavigationProperty Name="User_Profile" Relationship="Self.fk_user_profile" FromRole="User_tb" ToRole="User_Profile" />
+        </EntityType>
+        <Association Name="fk_user2">
+          <End Role="User_tb" Type="Self.User_tb" Multiplicity="1" />
+          <End Role="Binnacle" Type="Self.Binnacle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_tb">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Binnacle">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_invoice">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="Invoice_details" Type="Self.Invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="id_invoice" />
+            </Principal>
+            <Dependent Role="Invoice_details">
+              <PropertyRef Name="id_invoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user">
+          <End Role="User_tb" Type="Self.User_tb" Multiplicity="1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_tb">
+              <PropertyRef Name="id_user" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Invoice_details" Type="Self.Invoice_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="id_product" />
+            </Principal>
+            <Dependent Role="Invoice_details">
+              <PropertyRef Name="id_product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_store">
+          <End Role="Store" Type="Self.Store" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="id_store" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="id_store" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_profile">
+          <End Role="User_Profile" Type="Self.User_Profile" Multiplicity="1" />
+          <End Role="User_tb" Type="Self.User_tb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Profile">
+              <PropertyRef Name="id_userProfile" />
+            </Principal>
+            <Dependent Role="User_tb">
+              <PropertyRef Name="id_userProfile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoFinal_KN_BDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Binnacle" EntityType="Self.Binnacle" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" />
+          <EntitySet Name="Invoice_details" EntityType="Self.Invoice_details" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Store" EntityType="Self.Store" />
+          <EntitySet Name="User_Profile" EntityType="Self.User_Profile" />
+          <EntitySet Name="User_tb" EntityType="Self.User_tb" />
+          <AssociationSet Name="fk_user2" Association="Self.fk_user2">
+            <End Role="User_tb" EntitySet="User_tb" />
+            <End Role="Binnacle" EntitySet="Binnacle" />
+          </AssociationSet>
+          <AssociationSet Name="fk_invoice" Association="Self.fk_invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="Invoice_details" EntitySet="Invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user" Association="Self.fk_user">
+            <End Role="User_tb" EntitySet="User_tb" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_product" Association="Self.fk_product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Invoice_details" EntitySet="Invoice_details" />
+          </AssociationSet>
+          <AssociationSet Name="fk_store" Association="Self.fk_store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_profile" Association="Self.fk_user_profile">
+            <End Role="User_Profile" EntitySet="User_Profile" />
+            <End Role="User_tb" EntitySet="User_tb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectoFinal_KN_BDModelStoreContainer" CdmEntityContainer="ProyectoFinal_KN_BDEntities">
+          <EntitySetMapping Name="Binnacle">
+            <EntityTypeMapping TypeName="ProyectoFinal_KN_BDModel.Binnacle">
+              <MappingFragment StoreEntitySet="Binnacle">
+                <ScalarProperty Name="id_error" ColumnName="id_error" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="date_time" ColumnName="date_time" />
+                <ScalarProperty Name="origin" ColumnName="origin" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice">
+            <EntityTypeMapping TypeName="ProyectoFinal_KN_BDModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="id_invoice" ColumnName="id_invoice" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoice_details">
+            <EntityTypeMapping TypeName="ProyectoFinal_KN_BDModel.Invoice_details">
+              <MappingFragment StoreEntitySet="Invoice_details">
+                <ScalarProperty Name="id_invoice_detail" ColumnName="id_invoice_detail" />
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="id_invoice" ColumnName="id_invoice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="ProyectoFinal_KN_BDModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="picture_url" ColumnName="picture_url" />
+                <ScalarProperty Name="id_store" ColumnName="id_store" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Store">
+            <EntityTypeMapping TypeName="ProyectoFinal_KN_BDModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="id_store" ColumnName="id_store" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Profile">
+            <EntityTypeMapping TypeName="ProyectoFinal_KN_BDModel.User_Profile">
+              <MappingFragment StoreEntitySet="User_Profile">
+                <ScalarProperty Name="id_userProfile" ColumnName="id_userProfile" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_tb">
+            <EntityTypeMapping TypeName="ProyectoFinal_KN_BDModel.User_tb">
+              <MappingFragment StoreEntitySet="User_tb">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="id_userProfile" ColumnName="id_userProfile" />
+                <ScalarProperty Name="token_recovery" ColumnName="token_recovery" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

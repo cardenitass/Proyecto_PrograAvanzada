@@ -12368,3 +12368,14 @@ body {
     font-size: 0.75rem;
     border-radius: 0.25rem !important;
 }
+
+/* Estilos personalizados */
+.EstiloMensajeError {
+    text-align: center;
+    color: red;
+}
+
+.EstiloMensajeExito {
+    text-align: center;
+    color: green;
+}

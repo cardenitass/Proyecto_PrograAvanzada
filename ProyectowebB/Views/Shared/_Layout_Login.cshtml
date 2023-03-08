@@ -1,4 +1,4 @@
-﻿@model ProyectowebB.Entities.UsuarioEnt
+﻿
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -7,54 +7,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="Login" content="" />
         <meta name="Grupo 2" content="" />
-        <title>iniciar seccion</title>
+        <title>Snap on Tools</title>
         <link href="~/template/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
 
-    <body class="bg-primary" style="background-image: url('../../img/keys-workshop-mechanic-tools-162553.jpeg'); background-repeat:no-repeat; background-attachment:fixed;background-size:cover;";>
+    <body class="bg-primary" style="background-image: url('../../img/keys-workshop-mechanic-tools-162553.jpeg'); background-repeat:no-repeat; background-attachment:fixed;background-size:cover;" ;>
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 @RenderBody()
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Inicio de sesión de la Ferretería Snap Tools</h3></div>
-                                    <div class="card-body">
-                                      
-                                            @using(Html.BeginForm("IniciarSeccion", "Home",FormMethod.Post, new { @class="pt-3" }))
-                                            {
-
-                                            <div class="form-floating mb-3">
-                                                @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electrónico" })
-                                                <label for="inputEmail">Correo electrónico </label>
-                                            </div>
-                                            <div class="form-floating mb-3">
-                                                @Html.PasswordFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "Contraseña" })
-                                                <label for="inputPassword">Contraseña</label>
-                                            </div>
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                                <label class="form-check-label" for="inputRememberPassword">Recorda Contraseña</label>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="password.html">¿Olvidó Contraseña?</a>
-                                                <input type="submit" class="btn btn-primary" value="Inicio de sesión " />
-                                                
-                                            </div>
-                                            }
-                                    </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">¿Necesita ayuda?</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
             </div>
+
             <div id="layoutAuthentication_footer">
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
@@ -70,7 +33,8 @@
                 </footer>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/template/js/scripts.js"></script>
     </body>
 </html>
