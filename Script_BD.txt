@@ -1,18 +1,6 @@
 CREATE DATABASE ProyectoFinal_KN_BD
-DROP DATABASE ProyectoFinal_KN_BD
-GO
-
 USE ProyectoFinal_KN_BD
 
---TABLES--------------------------------------------------------------------------------------------------------------------------------
-
-CREATE TABLE Store (
-    id_store int IDENTITY (1,1) NOT NULL CONSTRAINT pk_store PRIMARY KEY ,
-CREATE DATABASE ProyectoFinal_KN_BD
-DROP DATABASE ProyectoFinal_KN_BD
-GO
-
-USE ProyectoFinal_KN_BD
 
 --TABLES--------------------------------------------------------------------------------------------------------------------------------
 
@@ -72,9 +60,15 @@ CREATE TABLE  Binnacle (
 	description varchar(500) NOT NULL,
 	date_time datetime NOT NULL,
 	origin varchar(100) NOT NULL,
-	id_user int NOT NULL
 );
 
+CREATE TABLE  Errors (
+	id_error bigint  NOT NULL CONSTRAINT pk_errors PRIMARY KEY,
+	description varchar(500) NOT NULL,
+	date_time datetime NOT NULL,
+	origin varchar(100) NOT NULL,
+	id_user int NOT NULL
+);
 
 
 ALTER TABLE Product ADD CONSTRAINT fk_store FOREIGN KEY (id_store)
@@ -92,5 +86,34 @@ REFERENCES Product(id_product);
 ALTER TABLE Invoice_details  ADD CONSTRAINT fk_invoice FOREIGN KEY (id_invoice)
 REFERENCES Invoice(id_invoice);
 
-ALTER TABLE Binnacle  ADD CONSTRAINT fk_user2 FOREIGN KEY (id_user)
+ALTER TABLE Errors  ADD CONSTRAINT fk_user2 FOREIGN KEY (id_user)
 REFERENCES User_tb(id_user);
+
+
+--INSERTS----------------------------------------------------------------------------------------------------------------------------
+
+
+INSERT INTO [dbo].[User_Profile]
+           ([user_type]
+           ,[description])
+     VALUES
+           ('1',
+           'Admin')
+
+
+INSERT INTO [dbo].[User_tb]
+           ([first_name]
+           ,[last_name]
+           ,[email]
+           ,[password]
+           ,[active]
+           ,[id_userProfile])
+     VALUES
+           ('David','Cardenas','davidcardenasorozco@gmail.com','123','1','1')
+
+
+--SELECTS----------------------------------------------------------------------------------------------------------------------------
+
+Select * from User_tb;
+
+Select * from User_Profile;
