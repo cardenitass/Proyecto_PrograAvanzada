@@ -12,11 +12,14 @@ namespace ProyectowebB.ModeloBD
     using System;
     using System.Collections.Generic;
     
-    public partial class Binnacle
+    public partial class Errors
     {
         public long id_error { get; set; }
         public string description { get; set; }
         public System.DateTime date_time { get; set; }
         public string origin { get; set; }
+        public int id_user { get; set; }
+    
+        public virtual User_tb User_tb { get; set; }
     }
 }

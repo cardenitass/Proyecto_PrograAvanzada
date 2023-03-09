@@ -5,19 +5,20 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="57315e790e77429a8df56e25046c99ae" Name="Diagram1">
-        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Binnacle" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Invoice" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Invoice_details" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Product" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Store" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.User_Profile" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.User_tb" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
-        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_user2" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_invoice" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_user" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_product" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_store" ManuallyRouted="false" />
-        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_user_profile" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Binnacle" Width="1.5" PointX="8.375" PointY="0.5" />
+        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Errors" Width="1.5" PointX="5.875" PointY="0.875" />
+        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Invoice" Width="1.5" PointX="5.875" PointY="3.875" />
+        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Invoice_details" Width="1.5" PointX="8.125" PointY="3.75" />
+        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Product" Width="1.5" PointX="8.125" PointY="7" />
+        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.Store" Width="1.5" PointX="5.75" PointY="6.875" />
+        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.User_Profile" Width="1.5" PointX="1.375" PointY="2.625" />
+        <EntityTypeShape EntityType="ProyectoFinal_KN_BDModel.User_tb" Width="1.5" PointX="3.625" PointY="1.875" />
+        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_user2" />
+        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_invoice" />
+        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_user" />
+        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_product" />
+        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_store" />
+        <AssociationConnector Association="ProyectoFinal_KN_BDModel.fk_user_profile" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

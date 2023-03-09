@@ -23,6 +23,8 @@ namespace ProyectowebB.Controllers
         [HttpPost]
         public ActionResult StartRecovery(Models.RecoveryModel model)
         {
+            try
+            {
                 if (!ModelState.IsValid)
                 {
                     return View(model);
@@ -45,6 +47,14 @@ namespace ProyectowebB.Controllers
                 }
 
                 return View();
+
+            }catch(Exception ex)
+            {
+                UsuarioModel UsuarioModel = new UsuarioModel();
+                UsuarioModel.RegistrarBitacora("Access-StartRecovery", ex.Message);
+                return View("/Views/Home/Index.cshtml");
+
+            }
 
             }
         
@@ -80,7 +90,8 @@ namespace ProyectowebB.Controllers
         [HttpPost]
         public ActionResult Recovery(Models.RecoveryPassword model)
         {
-           
+            try
+            {
                 if (!ModelState.IsValid)
                 {
                     return View(model);
@@ -99,6 +110,13 @@ namespace ProyectowebB.Controllers
                     }
                 }
 
+            }catch(Exception ex)
+            {
+                UsuarioModel usuarioModel = new UsuarioModel();
+                usuarioModel.RegistrarBitacora("Access-Recovery", ex.Message);
+                return View("/Views/Home/Index.cshtml");
+            }
+
             ViewBag.Message = "Contraseña recuperada exitosamente";
             return View("/Views/Home/Index.cshtml");
         }
@@ -107,8 +125,17 @@ namespace ProyectowebB.Controllers
         [HttpPost]
         public ActionResult BuscarCorreo(string correo)
         {
+            try
+            {
                 var resultado = model.BuscarCorreo(correo);
                 return Json(resultado, JsonRequestBehavior.AllowGet);
+
+            }catch(Exception ex)
+            {
+                UsuarioModel UsuarioModel = new UsuarioModel();
+                UsuarioModel.RegistrarBitacora("Access-BuscarCorreo", ex.Message);
+                return Json(null, JsonRequestBehavior.DenyGet);
+            }
             
         }
 

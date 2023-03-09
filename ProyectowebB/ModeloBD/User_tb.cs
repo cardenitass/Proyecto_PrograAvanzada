@@ -17,7 +17,7 @@ namespace ProyectowebB.ModeloBD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User_tb()
         {
-            this.Binnacle = new HashSet<Binnacle>();
+            this.Errors = new HashSet<Errors>();
             this.Invoice = new HashSet<Invoice>();
         }
     
@@ -31,7 +31,7 @@ namespace ProyectowebB.ModeloBD
         public string token_recovery { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Binnacle> Binnacle { get; set; }
+        public virtual ICollection<Errors> Errors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoice { get; set; }
         public virtual User_Profile User_Profile { get; set; }

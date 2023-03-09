@@ -6,57 +6,68 @@
 }
 
 
-        @if(ViewBag.Message == "Contraseña recuperada exitosamente") { 
+@if (ViewBag.Message == "Contraseña recuperada exitosamente")
+{
 
-            <div class="col-md-3">
-                <div class="alert alert-success">
-                  @ViewBag.Message
-                </div>
-            </div>
+    <div class="col-md-3">
+        <div class="alert alert-success">
+            @ViewBag.Message
+        </div>
+    </div>
 
-        } else if( @ViewBag.Error == "Tu token ha expirado") {
+}
+else if (@ViewBag.Error == "Tu token ha expirado")
+{
 
-            <div class="col-md-3">
-                <div class="alert alert-danger">
-                  @ViewBag.Error
-                </div>
-            </div>
-        } 
-
-
-    <main>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-5">
-                    <div class="card shadow-lg border-0 rounded-lg mt-5">
-                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Ferretería Snap Tools</h3></div>
-                        <div class="card-body">
-
-                            @using (Html.BeginForm("Principal", "Home", FormMethod.Post, new { @class = "pt-3" }))
-                            {
-
-                                <div class="form-floating mb-3">
-                                    @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electrónico" })
-                                    <label for="inputEmail">Correo electrónico </label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    @Html.PasswordFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "Contraseña" })
-                                    <label for="inputPassword">Contraseña</label>
-                                </div>
-
-                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-
-                                    <a href="@Url.Action("StartRecovery","Access")" class="small">¿Olvidó la Contraseña?</a>
+    <div class="col-md-3">
+        <div class="alert alert-danger">
+            @ViewBag.Error
+        </div>
+    </div>
+}
+else if (ViewBag.mensajeError == "Sus credenciales no fueron validadas" || ViewBag.mensajeError == "Sus credenciales son incorrectas")
+{
+    <div class="col-md-3">
+        <div class="alert alert-danger">
+            @ViewBag.mensajeError
+        </div>
+    </div>
+}
 
 
-                                    <input type="submit" class="btn btn-primary" value="Iniciar sesión" />
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Ferretería Snap Tools</h3></div>
+                    <div class="card-body">
 
-                                </div>
-                            }
-                        </div>
+                        @using (Html.BeginForm("Principal", "Home", FormMethod.Post, new { @class = "pt-3" }))
+                        {
 
+                            <div class="form-floating mb-3">
+                                @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electrónico" })
+                                <label for="inputEmail">Correo electrónico </label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                @Html.PasswordFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "Contraseña" })
+                                <label for="inputPassword">Contraseña</label>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+
+                                <a href="@Url.Action("StartRecovery","Access")" class="small">¿Olvidó la Contraseña?</a>
+
+
+                                <input type="submit" class="btn btn-primary" value="Iniciar sesión" />
+
+                            </div>
+                        }
                     </div>
+
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>

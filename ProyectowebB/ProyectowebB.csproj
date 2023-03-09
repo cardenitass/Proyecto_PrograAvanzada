@@ -135,6 +135,9 @@
     <Compile Include="ModeloBD\Binnacle.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModeloBD\Errors.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModeloBD\Invoice.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -26,6 +26,7 @@ namespace ProyectowebB.ModeloBD
         }
     
         public virtual DbSet<Binnacle> Binnacle { get; set; }
+        public virtual DbSet<Errors> Errors { get; set; }
         public virtual DbSet<Invoice> Invoice { get; set; }
         public virtual DbSet<Invoice_details> Invoice_details { get; set; }
         public virtual DbSet<Product> Product { get; set; }
