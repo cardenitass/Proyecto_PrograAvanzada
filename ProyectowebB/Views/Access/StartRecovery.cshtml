@@ -14,19 +14,19 @@
                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Recuperación de contraseña </h3></div>
                     <div class="card-body">
 
-                        <h4>Escribe tu correo electrónico</h4>
+
 
                         <form action=" @Url.Content("~/Access/StartRecovery")" method="post">
-
+                            <label>Escribe tu correo electrónico</label>
                             @Html.TextBoxFor(d => d.Email, null, new
                            { @class = "form-control", @onblur = "BuscarCorreo();" })
 
                             @Html.ValidationMessageFor(d => d.Email, null, new { style = "color: red;" })
-                                <br />
+                    
                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
 
 
-                                <input type="submit" id="BtnEnviarContrasenna" disabled class="btn btn-primary" value="Enviar Correo" />
+                                <input type="submit" id="BtnEnviarContrasenna" disabled class="btn btn-primary" value="Enviar Email" />
 
                             </div>
                         </form>

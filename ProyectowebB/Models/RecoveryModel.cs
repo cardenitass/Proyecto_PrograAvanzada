@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
 using System.Linq;
 using System.Net.Mail;
 using System.Security.Cryptography;
@@ -13,7 +14,6 @@ namespace ProyectowebB.Models
     public class RecoveryModel
     {
         // ------------------- RELLENAR URL-----------------------------//
-        string urlDomain = "https://localhost:44307/Access/Recovery";
 
         [EmailAddress]
         [Required]
@@ -56,9 +56,9 @@ namespace ProyectowebB.Models
         // Metodo para enviar correo por SMTP
         public void SendEmail(string EmailDestino, string token)
         {
-            string EmailOrigen = "dcardenas90058@ufide.ac.cr";
-            string Contrasenna = "Machito2014";
-            string url = urlDomain + "?token=" + token;
+            string EmailOrigen = ConfigurationManager.AppSettings["DireccionCorreo"]; 
+            string Contrasenna = ConfigurationManager.AppSettings["ClaveCorreo"];
+            string url = ConfigurationManager.AppSettings["UrlRecovery"] + "?token=" + token;
 
             MailMessage vMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Recuperación de Contraseña",
                 "<p>Correo para recuperación de contraseña </p><br/>" +

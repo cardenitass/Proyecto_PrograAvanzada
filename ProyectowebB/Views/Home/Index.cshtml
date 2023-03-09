@@ -5,53 +5,58 @@
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
 }
 
-<div class="EstiloMensajeExito">
-    @ViewBag.Message
-</div>
 
-<div class="EstiloMensajeError">
-    @ViewBag.Error
-</div>
+        @if(ViewBag.Message == "Contraseña recuperada exitosamente") { 
 
-<main>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-5">
-                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Inicio de sesión de la Ferretería Snap Tools</h3></div>
-                    <div class="card-body">
+            <div class="col-md-3">
+                <div class="alert alert-success">
+                  @ViewBag.Message
+                </div>
+            </div>
 
-                        @using (Html.BeginForm("Principal", "Home", FormMethod.Post, new { @class = "pt-3" }))
-                        {
+        } else if( @ViewBag.Error == "Tu token ha expirado") {
 
-                            <div class="form-floating mb-3">
-                                @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electrónico" })
-                                <label for="inputEmail">Correo electrónico </label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                @Html.PasswordFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "Contraseña" })
-                                <label for="inputPassword">Contraseña</label>
-                            </div>
-                           
-                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+            <div class="col-md-3">
+                <div class="alert alert-danger">
+                  @ViewBag.Error
+                </div>
+            </div>
+        } 
 
-                                <a href="@Url.Action("StartRecovery","Access")" class="small">¿Olvidó Contraseña?</a>
-                                <div class="EstiloMensajeExito">
-                                    @ViewBag.Message
+
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Ferretería Snap Tools</h3></div>
+                        <div class="card-body">
+
+                            @using (Html.BeginForm("Principal", "Home", FormMethod.Post, new { @class = "pt-3" }))
+                            {
+
+                                <div class="form-floating mb-3">
+                                    @Html.TextBoxFor(Model => Model.CorreoElectronico, new { @class = "form-control", @placeholder = "Correo Electrónico" })
+                                    <label for="inputEmail">Correo electrónico </label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    @Html.PasswordFor(Model => Model.Contrasenna, new { @class = "form-control", @placeholder = "Contraseña" })
+                                    <label for="inputPassword">Contraseña</label>
                                 </div>
 
-                                <div class="EstiloMensajeError">
-                                    @ViewBag.mensajeError
+                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+
+                                    <a href="@Url.Action("StartRecovery","Access")" class="small">¿Olvidó la Contraseña?</a>
+
+
+                                    <input type="submit" class="btn btn-primary" value="Iniciar sesión" />
+
                                 </div>
+                            }
+                        </div>
 
-                                <input type="submit" class="btn btn-primary" value="Iniciar sesión" />
-
-                            </div>
-                        }
                     </div>
-                 
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
